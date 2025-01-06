@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Method Selection (Maya & GCash)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #302a2a;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgb(206, 196, 255);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .payment-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #ff0606;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      width: 45%;
+      cursor: pointer;
+      text-align: center;
+    }
+    .payment-button:hover {
+      background-color: #000000;
+    }
+    .instructions {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    .instructions h2 {
+      margin-bottom: 10px;
+    }
+    .instructions p, .instructions ul {
+      text-align: left;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .copy-button, .download-button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      font-size: 14px;
+      color: white;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .copy-button:hover, .download-button:hover {
+      background-color: #0056b3;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Select Your Payment Method</h1>
+  <p>Choose your payment method below:</p>
+  <form id="payment-form">
+    <button type="button" class="payment-button" onclick="showInstructions('maya')">Pay with Maya</button>
+    <button type="button" class="payment-button" onclick="showInstructions('gcash')">Pay with GCash</button>
+  </form>
+
+  <div class="instructions" id="instructions">
+    <!-- Instructions will appear here -->
+  </div>
+</div>
+
+<script>
+  // Function to copy text to clipboard
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Copied to clipboard: " + text);
+    }).catch(err => {
+      console.error("Failed to copy text: ", err);
+    });
+  }
+
+  // Function to show instructions based on the selected payment method
+  function showInstructions(paymentMethod) {
+    const instructionsDiv = document.getElementById('instructions');
+    instructionsDiv.innerHTML = ''; // Clear previous instructions
+    
+    if (paymentMethod === 'maya') {
+      instructionsDiv.innerHTML = `
+        <h2>Instructions for Paying with Maya</h2>
+        <p>1. Open your Maya app.</p>
+        <p>2. Go to "Send Money".</p>
+        <p>3. Enter the following payment details:</p>
+        <ul>
+          <li>
+            <strong>Maya Number:</strong> 09063664197
+            <button class="copy-button" onclick="copyToClipboard('09063664197')">Copy</button>
+          </li>
+          <li><strong>Amount:</strong> PHP 100.00</li>
+        </ul>
+        <p>4. Scan the QR Code below or download it:</p>
+        <img src="image/mayacode.png" alt="Maya QR Code" width="260" height="233">
+        <br>
+        <a href="mayacode.png" download="Maya_QR_Code.png">
+          <button class="download-button">Download QR Code</button>
+        </a>
+        <p>5. Send proof of payment on Telegram: <a href="https://t.me/zenihoward" target="_blank">https://t.me/zenihoward</a></p>
+        <p>If you face any issues, please contact customer support.</p>
+      `;
+    } else if (paymentMethod === 'gcash') {
+      instructionsDiv.innerHTML = `
+        <h2>Instructions for Paying with GCash</h2>
+        <p>1. Open your GCash app.</p>
+        <p>2. Go to "Send Money".</p>
+        <p>3. Enter the following payment details:</p>
+        <ul>
+          <li>
+            <strong>GCash Number:</strong> 09063664197
+            <button class="copy-button" onclick="copyToClipboard('09063664197')">Copy</button>
+          </li>
+          <li><strong>Amount:</strong> PHP 100.00</li>
+        </ul>
+        <p>4. Confirm the payment and complete the transaction.</p>
+        <p>5. Send proof of payment on Telegram: <a href="https://t.me/zenihoward" target="_blank">https://t.me/zenihoward</a></p>
+        <p>If you face any issues, please contact customer support.</p>
+      `;
+    }
+  }
+</script>
+
+</body>
+</html>
